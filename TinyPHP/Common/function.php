@@ -1,0 +1,41 @@
+<?php
+/**
+ * 记录和统计时间（微秒）和内存使用情况
+ * 使用方法:
+ * <code>
+ * G('begin'); // 记录开始标记位
+ * // ... 区间运行代码
+ * G('end'); // 记录结束标签位
+ * echo G('begin','end',6); // 统计区间运行时间 精确到小数后6位
+ * echo G('begin','end','m'); // 统计区间内存使用情况
+ * 如果end标记位没有定义，则会自动以当前作为标记位
+ * 其中统计内存使用需要 MEMORY_LIMIT_ON 常量为true才有效
+ * </code>
+ * @param $start
+ * @param string $end
+ * @param int $dec
+ * @return 综上所述
+ */
+function T($start,$end='',$dec=6){
+    static $_time=array();
+    static $_mem=array();
+    if(is_float($end)){//记录时间
+        $_time[$start]=$end;
+    }elseif(!empty($end)){//统计时间和内存使用
+        if(!isset($_time[$end]))
+            $_time[$end]=microtime(true);
+        if(MEMORY_LIMIT_ON && $dec=='m'){
+            if(!isset($_mem[end]))
+                $_mem[end]=memory_get_usage();
+            return number_format(($_mem[$end]-$_mem[$start])/1024).'M';
+        } else{
+            return number_format(($_time[$end]-$_time[$start]),$dec).'S';
+        }
+    }else{//记录时间和内存时间
+        $_time[$start]=microtime(true);
+        if(MEMORY_LIMIT_ON)
+            $_mem[$start]=memory_get_usage();
+    }
+    return null;
+
+}
