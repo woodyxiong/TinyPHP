@@ -33,4 +33,6 @@ defined('TINY_VENDOR') or define('TINY_VENDOR', TINY_LIB.'Vendor/');	//核心目
 
 //加载核心类库
 require TINY_PATH.'/Tiny'.EXT;
+//应用初始化
+Tiny\Tiny::begin();
 
