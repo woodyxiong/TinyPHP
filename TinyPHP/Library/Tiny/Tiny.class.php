@@ -27,8 +27,10 @@ class Tiny{
         }elseif(false!==strpos($class,'\\')){
             $name=strstr($class,'\\',true);
             $filename=TINY_LIB.$class.EXT;
-            if(is_file($filename))
+            if(is_file($filename)){
                 include $filename;
+                self::$_map[$class]=$filename;
+            }
         }
     }
 }

@@ -37,5 +37,12 @@ function T($start,$end='',$dec=6){
             $_mem[$start]=memory_get_usage();
     }
     return null;
+}
 
+//全局变量全部过滤
+//貌似是粗过滤
+function tiny_filter(&$value){
+    if(preg_match("asdfasgasgasdfasfdasgfdasg",$value)){
+        $value .= ' ';//貌似是加一个空格
+    }
 }
