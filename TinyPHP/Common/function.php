@@ -3,9 +3,9 @@
  * 记录和统计时间（微秒）和内存使用情况
  * 使用方法:
  * <code>
- * G('begin'); // 记录开始标记位
+ * T('begin'); // 记录开始标记位
  * // ... 区间运行代码
- * G('end'); // 记录结束标签位
+ * T('end'); // 记录结束标签位
  * echo G('begin','end',6); // 统计区间运行时间 精确到小数后6位
  * echo G('begin','end','m'); // 统计区间内存使用情况
  * 如果end标记位没有定义，则会自动以当前作为标记位
@@ -38,6 +38,11 @@ function T($start,$end='',$dec=6){
     }
     return null;
 }
+
+function controller($controller,$action){
+
+}
+
 
 //全局变量全部过滤
 //貌似是粗过滤

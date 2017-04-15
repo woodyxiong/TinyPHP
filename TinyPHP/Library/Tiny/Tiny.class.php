@@ -26,6 +26,8 @@ class Tiny{
             include self::$_map[$class];
         }elseif(false!==strpos($class,'\\')){
             $name=strstr($class,'\\',true);
+            //linux环境下,对'\'和'/'敏感
+            $class=str_ireplace('\\','/',$class);
             $filename=TINY_LIB.$class.EXT;
             if(is_file($filename)){
                 include $filename;

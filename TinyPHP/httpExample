@@ -44,7 +44,7 @@ Apache/2.4.17 (Win32) OpenSSL/1.0.2d PHP/5.6.23 Server at data.test Port 80
     "GET" ["QUERY_STRING"] = > string(12)
     "index=%27%27" ["REQUEST_URI"] = > string(40)
     "/index.php/home/index/index?index=%27%27" ["SCRIPT_NAME"] = > string(10)
-    "/index.php" ["PATH_INFO"] = > string(11)
+    "/index.php" ["PATH_INFO"] =  string(11)
     "index/index" ["PATH_TRANSLATED"] = > string(32)
     "D:\App\back-end\home\index\index" ["PHP_SELF"] = > string(27)
     "/index.php/home/index/index" ["REQUEST_TIME_FLOAT"] = > float(1491489713.585)["REQUEST_TIME"] = > int(1491489713)

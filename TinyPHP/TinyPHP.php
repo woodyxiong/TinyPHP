@@ -2,6 +2,11 @@
 //记录开始运行时间
 $GLOBALS['_beginTime'] = microtime(TRUE);
 
+//默认控制器
+defined('DEFAULT_CONTROLLER') or define('DEFAULT_CONTROLLER','index');
+//默认操作
+defined('DEFAULT_ACTION') or define('DEFAULT_ACTION','index');
+
 //系统常亮定义
 defined('APP_DEBUG') or define('APP_DEBUG',false);						//是否开启debug
 defined('APP_PATH') or define('APP_PATH', 'Home/');						//应用目录
