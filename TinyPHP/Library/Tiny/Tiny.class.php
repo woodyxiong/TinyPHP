@@ -21,6 +21,7 @@ class Tiny{
     }
 
     public static function autoload($class){
+        echo $class;
         //是否存在类映射
         if(isset(self::$_map[$class])){
             include self::$_map[$class];

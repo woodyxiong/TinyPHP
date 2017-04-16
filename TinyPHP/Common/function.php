@@ -39,7 +39,16 @@ function T($start,$end='',$dec=6){
     return null;
 }
 
+//控制器
 function controller($controller,$action){
+    //$controller变成大写
+    $controller=substr_replace($controller,strtoupper(substr($controller,0,1)),0,1);
+    $path=APP_CONT.$controller.'Controller'.EXT;
+    if(file_exists($path)){
+        include $path;
+    } else{
+        exit("can not find ".$controller.'Controller'.EXT);
+    }
 
 }
 
