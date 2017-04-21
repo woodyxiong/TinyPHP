@@ -34,8 +34,11 @@ class App
             $action=$pathinfo[1];
         }
 
-        //运行控制器->动作
-        controller($controller,$action);
+        //运行控制器
+        $module=controller($controller,$action);
+        if(!$module)
+            exit("无法打开控制器");
+
     }
 
 

@@ -43,13 +43,16 @@ function T($start,$end='',$dec=6){
 function controller($controller,$action){
     //$controller变成大写
     $controller=substr_replace($controller,strtoupper(substr($controller,0,1)),0,1);
-    $path=APP_CONT.$controller.'Controller'.EXT;
-    if(file_exists($path)){
-        include $path;
-    } else{
-        exit("can not find ".$controller.'Controller'.EXT);
-    }
 
+//    $class=Home\Controller\IndexController
+    $class='Home'.'\\'.'Controller';
+    $class =$class.'\\'.$controller.'Controller';
+
+    if(class_exists($class)){
+        return new $class();
+    }else{
+        return false;
+    }
 }
 
 
