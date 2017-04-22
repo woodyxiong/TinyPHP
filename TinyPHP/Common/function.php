@@ -40,7 +40,7 @@ function T($start,$end='',$dec=6){
 }
 
 //控制器
-function controller($controller,$action){
+function controller($controller){
     //$controller变成大写
     $controller=substr_replace($controller,strtoupper(substr($controller,0,1)),0,1);
 

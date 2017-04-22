@@ -35,9 +35,17 @@ class App
         }
 
         //运行控制器
-        $module=controller($controller,$action);
+        $module=controller($controller);
         if(!$module)
             exit("无法打开控制器");
+
+        //执行当前操作
+        $method=new \ReflectionMethod($module,$action);
+        if ($method->isPublic()&&!$method->isStatic()){
+            //$class=\ReflectionClass($module);
+            $method->invoke($module);
+        }
+
 
     }
 
