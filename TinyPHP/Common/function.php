@@ -55,6 +55,21 @@ function controller($controller){
     }
 }
 
+/**
+ * @param string $name 数据库名字
+ * @return mixed    object
+ */
+function M($name=''){
+    if($name=='')exit("M() argument is ''");
+    static $_model=array();
+    $class='Tiny\\Model';
+    $guid=$name.'_'.$class;
+    if(!isset($_model[$guid])){
+        $_model[$guid]=new $class($name);
+    }
+    return $_model[$guid];
+}
+
 
 //全局变量全部过滤
 //貌似是粗过滤

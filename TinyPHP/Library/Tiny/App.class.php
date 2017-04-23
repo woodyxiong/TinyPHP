@@ -18,7 +18,7 @@ class App
     /**
      * 正式执行应用程序
      */
-    public static function execute(){
+    private static function execute(){
         //解析PATH_INFO
         $pathinfo=explode("/",$_SERVER[PATH_INFO]);
         if($pathinfo[1]=='')
