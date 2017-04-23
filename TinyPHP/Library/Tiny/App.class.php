@@ -21,31 +21,33 @@ class App
     public static function execute(){
         //解析PATH_INFO
         $pathinfo=explode("/",$_SERVER[PATH_INFO]);
-        if($pathinfo[0]=='')
+        if($pathinfo[1]=='')
             $controller=DEFAULT_CONTROLLER;
         else{
             //安全过滤
-            $controller=$pathinfo[0];
+            $controller=$pathinfo[1];
         }
-        if($pathinfo[1]=='')
+        if($pathinfo[2]=='')
             $action=DEFAULT_ACTION;
         else{
             //安全过滤
-            $action=$pathinfo[1];
+            $action=$pathinfo[2];
         }
 
         //运行控制器
         $module=controller($controller);
         if(!$module)
-            exit("无法打开控制器");
+            exit("can not open controller");
 
         //执行当前操作
+        if (!method_exists($module,$action)) exit("can not find action");
         $method=new \ReflectionMethod($module,$action);
         if ($method->isPublic()&&!$method->isStatic()){
             //$class=\ReflectionClass($module);
             $method->invoke($module);
+        }else{
+            exit("action is not public or action is static");
         }
-
 
     }
 
