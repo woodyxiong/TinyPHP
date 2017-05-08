@@ -55,6 +55,14 @@ function controller($controller){
     }
 }
 
+function load_config($file){
+    if(is_file($file)){
+        return include $file;
+    }else{
+        exit('file is not existence');
+    }
+}
+
 /**
  * @param string $name 数据库名字
  * @return mixed    object
