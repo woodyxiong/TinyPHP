@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0; padding:0; list-style-type:none;}
+body{font-size:12px; line-height:180%;}
+a{text-decoration:none; color:#666;}
+a:hover{color:#000;}
+a img{border:none;}
+.clear{clear:both;}
+.border{border:2px solid #6F9CC9;}
+h2{font-size:16px;}
+#header{height:155px;}
+
+
+
+#top{background:#06295E; height:120px;}
+#top .inner{width:900px; margin:0 auto;}
+	#logo{width:371px; float:left; margin-top:35px;}
+	#banner{width:456px; float:right;}
+	#banner img{width:456px; height:100px; margin-top:12px;}
+	
+	
+
+
+#main{width:900px; margin:0 auto; margin-top:20px;}
+#mainleft{width:250px; float:left;}
+	.sidebox{padding:0 10px 10px; border-bottom:1px solid #6F9CC9;}
+	.sidebox h3{line-height:31px; font-size:14px;}
+
+#mainright{width:640px; float:right;}
+#content{padding:10px;}
+#saySlide{width:618px; height:250px; overflow:hidden;}
+
+
+#thumblist{margin-top:10px;}
+#thumblist h2{font-size:16px; border-bottom:1px solid #6F9CC9;}
+#thumblist ul{}
+#thumblist ul li{width:154px; float:left;}
+#thumblist ul li .box{border:1px solid #6F9CC9; margin:5px;}
+#thumblist ul li .box img{width:142px; height:120px; display:block;}
+
+#newslist{margin-top:10px;}
+#newslist h2{font-size:16px; border-bottom:1px solid #6F9CC9;}
+#newslist h2 span.more{font-size:12px; padding-left:50px;}
+#newslist h2 span.more a{font-weight:400; color:#999;}
+#newslist ul{padding:5px 10px;}
+#newslist ul li{line-height:30px; border-bottom:1px dotted #ccc;}
+
+.sbanner{margin-top:10px; text-align:center;}
+.sbanner img{}
+
+#pingjia{ border-bottom:1px solid #000; width:1350px; float:left;}
+#p1{width:1350px; height:25px; float:left; font-weight:bold}
+.p2{width:1350px;height:40px; padding:0 10px 10px; }
+.clear{clear:both;}
+
+
+
+.border1{border:0px solid #6F9CC9;}
+.sidebox1{padding:30px 60px 10px; border-bottom:1px solid #6F9CC9;}
+	.sidebox1 h11{line-height:31px; font-size:14px; font-weight:bold }	
+	
+	
+	
+	
+#menu{height:35px; background:#6F9CC9;}
+#menu ul{height:35px; width:900px; margin:0 auto;}
+#menu ul li{float:left; height:35px; line-height:35px; margin-right:1px;}
+#menu ul li a{display:block; float:left; height:35px; padding:0 30px; color:#fff;}
+#menu ul li a:hover{background-color:#0d3879;}
+#menu ul li.home a{background-color:#0d3879;}
+
+
+  
+
