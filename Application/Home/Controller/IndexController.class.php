@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Tiny\Controller;
 class IndexController extends Controller{
     public function index(){
-        M('hello');
+        $this->display();
     }
 
     public function index2(){

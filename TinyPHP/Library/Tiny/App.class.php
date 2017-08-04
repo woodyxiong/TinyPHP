@@ -7,9 +7,9 @@ class App
 {
     public static function run(){
         //全局粗过滤
-        array_walk_recursive($_GET,'tiny_fliter');
-        array_walk_recursive($_POST,'tiny_fliter');
-        array_walk_recursive($_REQUEST,'tiny_fliter');
+        // array_walk_recursive($_GET,'tiny_fliter');
+        // array_walk_recursive($_POST,'tiny_fliter');
+        // array_walk_recursive($_REQUEST,'tiny_fliter');
 
         //执行应用程序
         APP::execute();
@@ -18,7 +18,7 @@ class App
     /**
      * 正式执行应用程序
      */
-    private static function execute(){
+    static private function execute(){
         //解析PATH_INFO
         $pathinfo=explode("/",$_SERVER[PATH_INFO]);
         if($pathinfo[1]=='')
@@ -44,6 +44,9 @@ class App
         $method=new \ReflectionMethod($module,$action);
         if ($method->isPublic()&&!$method->isStatic()){
             //$class=\ReflectionClass($module);
+            define('ACTION_NAME',$action);
+            define('CONTROLLER_NAME',$controller);
+
             $method->invoke($module);
         }else{
             exit("action is not public or action is static");
