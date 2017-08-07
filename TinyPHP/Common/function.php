@@ -55,6 +55,10 @@ function controller($controller){
     }
 }
 
+/**
+ * 加载配置
+ * @param  string $file 配置文件路径
+ */
 function load_config($file){
     if(is_file($file)){
         return include $file;
@@ -68,7 +72,7 @@ function load_config($file){
  * @return mixed    object
  */
 function M($name=''){
-    if($name=='')exit("M() argument is ''");
+    if(empty($name))exit("M() argument is empty");
     static $_model=array();
     $class='Tiny\\Model';
     $guid=$name.'_'.$class;

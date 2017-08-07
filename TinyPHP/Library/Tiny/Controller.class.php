@@ -33,4 +33,14 @@ abstract class Controller{
     public function display($templateFile=''){
         $this->view->display($templateFile);
     }
+
+    /**
+     * 输出json数据
+     * @param  array $data 数据
+     */
+    public function jsonReturn($data){
+        // 返回JSON数据格式到客户端 包含状态信息
+        header('Content-Type:application/json; charset=utf-8');
+        exit(json_encode($data,$json_option));
+    }
 }
