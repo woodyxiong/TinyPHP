@@ -68,18 +68,29 @@ function load_config($file){
 }
 
 /**
- * @param string $name 数据库名字
- * @return mixed    object
+ * @param string $config    数据库配置
+ * @return mixed object     数据库实例
  */
-function M($name=''){
-    if(empty($name))exit("M() argument is empty");
+function M($config){
+    //执行默认配置
+    if(empty($name)){
+        $config=load_config(APP_CONF.'config.php');
+    }
     static $_model=array();
     $class='Tiny\\Model';
-    $guid=$name.'_'.$class;
+    $guid=md5(serialize($config));
     if(!isset($_model[$guid])){
-        $_model[$guid]=new $class($name);
+        $_model[$guid]=new $class($config);
     }
     return $_model[$guid];
+}
+
+/**
+ * var_dump
+ * @param [type] $value 需要打印的变量
+ */
+function D($value){
+    var_dump($value);
 }
 
 

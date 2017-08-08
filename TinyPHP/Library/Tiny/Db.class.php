@@ -20,7 +20,6 @@ class Db
                 exit('can not find '.$class);
             }
             self::$_instance[$md5]=self::$instance[$md5];
-            var_dump(self::$instance[$md5]);
             return self::$_instance;
         }
     }

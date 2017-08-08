@@ -3,7 +3,9 @@ namespace Home\Controller;
 use Tiny\Controller;
 class IndexController extends Controller{
     public function index(){
+        // $data=M();
         M('data');
+        echo "index";
     }
 
     /**
