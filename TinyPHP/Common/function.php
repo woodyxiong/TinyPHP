@@ -71,7 +71,7 @@ function load_config($file){
  * @param string $config    数据库配置
  * @return mixed object     数据库实例
  */
-function M($config){
+function M($config=''){
     //执行默认配置
     if(empty($name)){
         $config=load_config(APP_CONF.'config.php');
