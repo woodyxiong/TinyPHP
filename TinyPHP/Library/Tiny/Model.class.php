@@ -24,7 +24,8 @@ class Model{
     /**
      * 执行sql语句
      * @param  string $sql sql语句
-     * @return [type]      [description]
+     * @return 若成功，返回PDOStatement
+     * @return 若失败，返回false并打印失败原因
      */
     public function execute($sql=''){
         if(empty($sql)) exit('sql is empty');

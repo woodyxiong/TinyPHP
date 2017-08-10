@@ -89,8 +89,13 @@ function M($config=''){
  * var_dump
  * @param [type] $value 需要打印的变量
  */
-function D($value){
-    var_dump($value);
+function D($var, $echo=true, $label=null, $strict=true) {
+    ob_start();
+        var_dump($var);
+    $output = ob_get_clean();
+    $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
+    $output = '<pre>' . $label . htmlspecialchars($output, ENT_QUOTES) . '</pre>';
+    echo($output);
 }
 
 
