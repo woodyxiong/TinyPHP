@@ -3,9 +3,17 @@ namespace Home\Controller;
 use Tiny\Controller;
 class IndexController extends Controller{
     public function index(){
-        $data=M()->execute('select * from camera');
-        D($data);
         echo "index";
+    }
+    
+    /**
+     * sql语句测试
+     */
+    public function sql(){
+        $data=M()->execute('select * from camera');
+        $sql=M()->getLastSql();
+        D($sql);
+        D($data);
     }
 
     /**
