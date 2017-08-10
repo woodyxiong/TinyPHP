@@ -3,9 +3,11 @@ namespace Home\Controller;
 use Tiny\Controller;
 class IndexController extends Controller{
     public function index(){
+        echo cookie('xk','shuai');
+        D(cookie());
         echo "index";
     }
-    
+
     /**
      * sql语句测试
      */

@@ -14,7 +14,10 @@ class Tiny{
         // error_reporting(E_ALL || ~E_NOTICE); //显示除去 E_NOTICE 之外的所有错误信息
         error_reporting(E_ERROR | E_WARNING | E_PARSE); //显示除去 E_NOTICE 之外的所有错误信息
 
+        //加载框架全局函数
         include TINY_COMMON.'function.php';
+        //加载应用程序全局函数
+        include APP_COMMON.'function.php';
         T('loadTime');
 
         //运行应用

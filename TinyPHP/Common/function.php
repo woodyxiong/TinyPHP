@@ -1,5 +1,36 @@
 <?php
 /**
+ * 设置cookie
+ * @param  string $name  名称
+ * @param  string $value 值
+ * @return mixed 若只有一个参数，则返回值
+ */
+function cookie($name='',$value='',$option=array()){
+    if(empty($name)&&empty($value)){
+        // 都为空,返回整个$_COOKIE
+        return $_COOKIE;
+    }elseif(is_null($value)){
+        //清空cookie
+        setcookie($name,time()-3600);
+    }elseif(empty($value)){
+        //只有一个值，则返回cookie值
+        return $_COOKIE[$name];
+    }else{
+        //两个值都有，设置cookie
+        if(empty($option)){
+            $option=load_config(APP_CONF.'cookie.php');
+        }
+        $result=setcookie(
+                $name,$value,$option['COOKIE_EXPIRE'],
+                $option['COOKIE_PATH'],
+                $option['COOKIE_DOMAIN']
+            );
+        // 返回是否添加cookie的结果
+        return $result;
+    }
+}
+
+/**
  * 记录和统计时间（微秒）和内存使用情况
  * 使用方法:
  * <code>
@@ -63,7 +94,7 @@ function load_config($file){
     if(is_file($file)){
         return include $file;
     }else{
-        exit('file is not existence');
+        exit($file.' is not existence');
     }
 }
 
@@ -71,10 +102,10 @@ function load_config($file){
  * @param string $config    数据库配置
  * @return mixed object     数据库实例
  */
-function M($config=''){
+function M($config=array()){
     //执行默认配置
-    if(empty($name)){
-        $config=load_config(APP_CONF.'config.php');
+    if(empty($config)){
+        $config=load_config(APP_CONF.'db.php');
     }
     static $_model=array();
     $class='Tiny\\Model';
@@ -91,13 +122,12 @@ function M($config=''){
  */
 function D($var, $echo=true, $label=null, $strict=true) {
     ob_start();
-        var_dump($var);
+    var_dump($var);
     $output = ob_get_clean();
     $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
     $output = '<pre>' . $label . htmlspecialchars($output, ENT_QUOTES) . '</pre>';
     echo($output);
 }
-
 
 //全局变量全部过滤
 //貌似是粗过滤
