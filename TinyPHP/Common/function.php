@@ -12,6 +12,7 @@ function cookie($name='',$value='',$option=array()){
     }elseif(is_null($value)){
         //清空cookie
         setcookie($name,time()-3600);
+        unset($_COOKIE[$name]);
     }elseif(empty($value)){
         //只有一个值，则返回cookie值
         return $_COOKIE[$name];
@@ -20,11 +21,7 @@ function cookie($name='',$value='',$option=array()){
         if(empty($option)){
             $option=load_config(APP_CONF.'cookie.php');
         }
-        $result=setcookie(
-                $name,$value,$option['COOKIE_EXPIRE'],
-                $option['COOKIE_PATH'],
-                $option['COOKIE_DOMAIN']
-            );
+        $result=setcookie($name,$value,$option['COOKIE_EXPIRE'],$option['COOKIE_PATH'],$option['COOKIE_DOMAIN']);
         // 返回是否添加cookie的结果
         return $result;
     }
