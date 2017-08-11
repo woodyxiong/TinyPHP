@@ -13,6 +13,7 @@ function cookie($name='',$value='',$option=array()){
         //清空cookie
         setcookie($name,time()-3600);
         unset($_COOKIE[$name]);
+        return null;
     }elseif(empty($value)){
         //只有一个值，则返回cookie值
         return $_COOKIE[$name];
@@ -24,6 +25,30 @@ function cookie($name='',$value='',$option=array()){
         $result=setcookie($name,$value,$option['COOKIE_EXPIRE'],$option['COOKIE_PATH'],$option['COOKIE_DOMAIN']);
         // 返回是否添加cookie的结果
         return $result;
+    }
+}
+
+/**
+ * 设置session
+ * @param  string $name  名称
+ * @param  string $value 值
+ * @return mixed
+ */
+function session($name='',$value=''){
+    if(empty($name)){
+        // 都为空，返回所有$_SESSION
+        return $_SESSION;
+    }elseif(is_null($value)){
+        // 删除session
+        unset($_SESSION[$name]);
+        return null;
+    }elseif(empty($value)){
+        // 返回session值
+        return $_SESSION[$name];
+    }else{
+        // 设置session
+        $_SESSION[$name]=$value;
+        return null;
     }
 }
 

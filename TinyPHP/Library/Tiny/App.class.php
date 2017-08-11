@@ -11,6 +11,9 @@ class App
         // array_walk_recursive($_POST,'tiny_fliter');
         // array_walk_recursive($_REQUEST,'tiny_fliter');
 
+        // 开启session机制
+        session_start();
+
         //执行应用程序
         APP::execute();
     }

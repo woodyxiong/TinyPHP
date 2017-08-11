@@ -3,10 +3,7 @@ namespace Home\Controller;
 use Tiny\Controller;
 class IndexController extends Controller{
     public function index(){
-        cookie('asdf',null);
-        cookie('xk',null);
-        cookie('xkxk',null);
-        D(cookie());
+        
     }
 
     /**
