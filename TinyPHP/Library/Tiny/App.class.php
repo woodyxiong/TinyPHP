@@ -11,9 +11,8 @@ class App
         // array_walk_recursive($_POST,'tiny_fliter');
         // array_walk_recursive($_REQUEST,'tiny_fliter');
 
-        // 开启session机制
-        session_start();
-
+        // 开启session
+        APP::set_session();
         //执行应用程序
         APP::execute();
     }
@@ -54,8 +53,17 @@ class App
         }else{
             exit("action is not public or action is static");
         }
-
     }
 
-
+    /**
+     * 读取session配置并且开启session机制
+     */
+    static public function set_session(){
+        // 读取session配置
+        $option=load_config(APP_CONF.'session.php');
+        ini_set('session.name',$option['SESSION_NAME']);
+        ini_set('session.save_path',$option['SESSION_PATH_NAME']);
+        // 开启session
+        session_start();
+    }
 }
