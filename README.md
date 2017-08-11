@@ -13,8 +13,11 @@
 ### 第一步
 将源码下载
 ```
-git clone git@github.com:woodyxiong/ss-panel.git ```
+git clone git@github.com:woodyxiong/ss-panel.git
+```
+
 ### 第二步
+
 如果使用nginx,则将配置文件指向Web目录
 ```
 server {
@@ -23,12 +26,19 @@ server {
     server_name servername;
 	root yourpath/TinyPHP/Web;
 ```
+
 ### 第三步
+
 与thinkPHP类似，你可以自由在用户目录写业务代码
 
 ## 使用特性
+
 ### 渲染html页面
+
 ### 静态页面缓存
+
 ### 使用数据库
+
 ### cookie和session的操作
+
 ### api的令牌操作
