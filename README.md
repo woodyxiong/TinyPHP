@@ -124,8 +124,7 @@ $session['tinyPHP']=session('tinyPHP');//返回名为tinyPHP的session
 session('tinyPHP',null);//清除名为tinyPHP的cookie信息
 ```
 
-### api的令牌操作
-
-### 静态页面缓存
-
-### php邮箱操作
+## 需要完成的事项
+- [ ] api的令牌操作
+- [ ] 静态页面缓存
+- [ ] php邮箱操作
