@@ -36,20 +36,35 @@ server {
 ### 渲染html页面
 
 在业务层代码直接执行 `display()`函数
-> 显示默认的视图模板
-> Application/Home/View/Index/Index.html
+> 显示默认的视图模板 `Application/Home/View/Index/Index.html`
 
 ```
 public function index(){
     $this->display();
 }
 ```
-> 指定视图模板 Application/Home/View/Index/Index2.html
+> 指定视图模板 `Application/Home/View/Index/Index2.html`
 
 ```
 public function index(){
     $this->display('index2');
 }
+```
+> 模板赋值
+由于没有使用任何模板引擎，所以在模板还是使用PHP代码进行输出
+
+模板赋值变量 在`Application/Home/Controller/IndexController.class.php`
+```
+public function index(){
+    $name='tinyPHP';
+    $this->assign('name',$name);
+    $this->display();
+}
+```
+模板变量输出 在`Application/Home/View/Index/index.html`
+```
+<?php
+echo $name;
 ```
 
 ### 使用数据库
