@@ -65,7 +65,10 @@ public function index(){
 'DB_CHARSET'=> 'utf8', // 字符集
 ```
 
+>数据库操作方法
+
 在业务层代码先用 `M()` 对数据库连接实例化，然后用 `excute()` 执行sql语句
+
 用 `getLastSql()` 可获得上次执行的sql语句
 ```
 public function sql(){
@@ -77,10 +80,34 @@ public function sql(){
 ### cookie操作
 在 `Application/Home/Conf/db.php` 可对cookie进行配置
 ```
+'COOKIE_EXPIRE' => 3600,   // Cookie有效期
+'COOKIE_PATH'   => '',     // Cookie有效域名
+'COOKIE_DOMAIN' => '/',    // Cookie作用域
+```
 
+>cookie操作方法
+
+```
+$cookie=cookie();//获取全部cookie
+cookie('tinyPHP','very good');//设置名为tinyPHP的cookie为very good
+$cookie['tinyPHP']=cookie('tinyPHP');//返回名为tinyPHP的cookie
+cookie('tinyPHP',null);//清除名为tinyPHP的cookie信息
 ```
 
 ### session操作
+在 `Application/Home/Conf/session.php` 可对session进行配置
+```
+'SESSION_NAME' => 'tinySSID',//session在cookie的名称
+'SESSION_SAVEPATH' => '/var/lib/php/sessions',//session的存储路径
+```
+> session操作方法
+
+```
+$session=session();//获取全部cookie
+session('tinyPHP','very good');//设置名为tinyPHP的session为very good
+$session['tinyPHP']=session('tinyPHP');//返回名为tinyPHP的session
+session('tinyPHP',null);//清除名为tinyPHP的cookie信息
+```
 
 ### api的令牌操作
 
