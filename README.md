@@ -147,6 +147,84 @@ session('tinyPHP',null);//清除名为tinyPHP的cookie信息
 
 为了防止中间人拿到token之后用自己现在的时间戳发送请求，所以才会有签名的功能，保证令牌和时间戳都是从客户端发出的。
 
+> 操作说明
+
+在 `Application/Home/Conf/token.php`进行配置
+```
+<?php
+return array(
+    'token_createsalt'  =>  'tinyPHPtoken', //创建api的盐
+    'token_signsalt'  =>  'tinyPHPsign',    //签名函数的盐
+    'token_expiretime'  =>  3600,           //借口过期时间
+);
+```
+在 `Application/Home/Conf/api.php`进行配置，可以自由的添加项目开发时需要的错误代码
+```
+<?php
+return array(
+    '100'   =>  'missing parameter',    //缺少参数
+    '101'   =>  'missing token',        //缺少token
+    '102'   =>  'missing timestamp',    //缺少时间戳
+    '103'   =>  'missing sign',         //缺少签名
+    '104'   =>  'overtime',             //超时
+    '105'   =>  'invalid sign',         //签名无效
+    '106'   =>  'invalid token',        //无效token
+    '200'   =>  'seccess',              //成功
+);
+```
+业务层函数介绍
+
+```
+$token=$this->createToken($username);   //给用户创建token并且返回给$token
+$user=$this->getuser();                 //直接获取token是哪个用户发来的，此函数在父类中是虚函数，必须在子类定义
+$this->fail($code);                     //有错误，将错误码和错误信息返回给客户
+$this->success($data);                  //一切准备就绪，给客户端发送数据
+```
+
+> 操作示例
+
+用户登录成功并且给用户返回一个token
+
+```
+用户登录成功并且给用户返回一个token
+public function auth(){
+    // ...验证登录
+    // 创建token
+    $username='tinyPHP';
+    $token=$this->createToken($username);
+    // ...保存token到数据库或者缓存中
+    // 将token发送给客户端
+    $data['token']=$token;
+    $this->success($data);
+}
+```
+
+获取用户名，再次强调，此函数在父类中是虚函数，必须在业务层重新定义
+```
+protected function getuser(){
+    $token=$_GET['token'];
+    $this->checkToken();
+    //一般为数据库或者缓存操作，在此处直接省略
+    if($token=="7cfb01bdac5fdd88f57556e0b3302702")
+        return "tinyPHP";
+    else
+        $this->fail("106");
+}
+```
+
+验证成功，并且从服务器返回数据
+```
+public function example(){
+    $user=$this->getuser();
+    //  获取token与user的关系
+    $username=$this->getuser($token);
+    // 业务逻辑
+    //  ...
+    $data["username"]='tinyPHP';
+    $this->success($data);
+}
+```
+
 ### 变量调试
 > 操作方法
 
