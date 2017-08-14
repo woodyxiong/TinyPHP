@@ -1,4 +1,6 @@
 <?php
 return array(
-    'expire_time'   =>  3600,
+    'token_createsalt'  =>  'tinyPHPtoken',
+    'token_signsalt'  =>  'tinyPHPsign',
+    'token_expiretime'  =>  3600,
 );
