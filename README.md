@@ -39,8 +39,14 @@ server {
 > 显示默认的视图模板 `Application/Home/View/Index/Index.html`
 
 ```
-public function index(){
-    $this->display();
+<?php
+namespace Home\Controller;
+use Tiny\Controller\viewController;
+class IndexController extends viewController{
+    public function index(){
+        $this->assign("tiny","php");
+        $this->display();
+    }
 }
 ```
 > 指定视图模板 `Application/Home/View/Index/Index2.html`
@@ -136,11 +142,25 @@ session('tinyPHP',null);//清除名为tinyPHP的cookie信息
 > 原理说明
 
 新建数据库索引表，将用户和令牌绑定，由于可能一个用户使用不同的终端，所以可能会一个用户对应多个token。
+
 每次用户发起请求的时候同时将时间戳发出，如果服务器端判定客户端发送的数据和服务器端接收数据的时间较短，则返回超时错误，这样是为了防止一个请求被调用多次，也可以防止中间人拿到token之后重复发送。
+
 为了防止中间人拿到token之后用自己现在的时间戳发送请求，所以才会有签名的功能，保证令牌和时间戳都是从客户端发出的。
 
+### 变量调试
+> 操作方法
+
+类似`var_dump()`方法，对浏览器进行友好输出
+```
+D($var);
+```
+
+> 原理介绍
+
+用ob_start()将var_dump()要输出的保存下来，然后对输出增加html标签，使输出更美观
 
 ## 需要完成的事项
+- [ ] json的实例化
 - [ ] cookie里需要有session的加密序列
 - [ ] 静态页面缓存
 - [ ] php邮箱操作

@@ -1,9 +1,10 @@
 <?php
 namespace Home\Controller;
-use Tiny\Controller;
-class IndexController extends Controller{
+use Tiny\Controller\viewController;
+class IndexController extends viewController{
     public function index(){
-        
+        $this->assign("tiny","php");
+        $this->display();
     }
 
     /**

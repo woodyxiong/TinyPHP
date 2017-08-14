@@ -32,7 +32,6 @@ class Tiny{
             $namespace=strstr($class,'\\',true);
             //linux环境下,对'\'和'/'敏感
             $class=str_ireplace('\\','/',$class);
-
             //若为Tiny系统类
             if(is_dir(TINY_LIB.$namespace)){
                 $filename=TINY_LIB.$class.EXT;
