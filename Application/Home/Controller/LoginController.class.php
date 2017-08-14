@@ -9,7 +9,7 @@ class LoginController extends apiController{
     public function auth(){
         // ...验证登录
         // 创建token
-        $username='xk';
+        $username='tinyPHP';
         $token=$this->createToken($username);
         // ...保存token到数据库或者缓存中
         // 将token发送给客户端
@@ -22,20 +22,26 @@ class LoginController extends apiController{
      * 来与服务器进行交互
      */
     public function example(){
-        $token=$_GET['token'];
-        $timestamp=$_GET['timestamp'];
-        $sign=$_GET['sign'];
-
-        $username=$this->getuser($token);
-        if(!$username)
-            exit('token错误');
-
-        $ispasstoken=$this->checksession($token,$timestamp,$sign);
-        if($ispasstoken){
-            $data['username']=$username;
-        }
+        $user=$this->getuser();
+        //  获取token与user的关系
+        // $username=$this->getuser($token);
+        // 业务逻辑
+        //  ...
+        $data["username"]='tinyPHP';
         $this->success($data);
+    }
 
+    /**
+     * 获取用户名
+     * 由于是父类的虚函数，所以必须写
+     */
+    protected function getuser(){
+        $token=$_GET['token'];
+        $this->checkToken();
+        if($token=="7cfb01bdac5fdd88f57556e0b3302702")
+            return "tinyPHP";
+        else
+            $this->fail("106");
     }
     
     //测试函数
@@ -46,17 +52,5 @@ class LoginController extends apiController{
         echo "<br>";
         echo md5($token.$this->option['token_signsalt'].$time);
     }
-
-    //找到用户名
-    private function getuser($token){
-        if($token=='4d94286ab3ad22b74e8af0deef4b0736'){
-            return 'xk';
-        }else{
-            return false;
-        }
-    }
-
-
-
 
 }
