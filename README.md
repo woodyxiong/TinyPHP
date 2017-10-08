@@ -1,4 +1,4 @@
-# tinyPHP
+# TinyPHP
 
 仿造thinkPHP开发的开源极简的PHP框架
 
