@@ -2,8 +2,6 @@
 
 仿造thinkPHP开发的开源极简的PHP框架
 
-[TOC]
-
 ## 安装环境
 在本地开发环境是 ubuntu16.04+PHP7.0.18+MySQL5.7.19+nginx1.10.3
 
